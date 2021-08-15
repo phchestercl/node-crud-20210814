@@ -1,12 +1,11 @@
-const path = require('path');
+
 const { response } = require('express');
+const { subirArchivo } = require('../helpers/subir-archivo');
 
 
 
-const cargarArchivo = (req, res = response) => {
-    let sampleFile;
-    let uploadPath;
-
+const cargarArchivo = async (req, res = response) => {
+    
     if (!req.files || Object.keys(req.files).length === 0) {
         res.status(400).send('No hay archivos para subir.');
         return;
@@ -16,32 +15,21 @@ const cargarArchivo = (req, res = response) => {
         return;
     }
     /* console.log('req.files >>>', req.files); // eslint-disable-line */
-
-    const {archivo} = req.files;
-    /* console.log('Directorio >>>');
-    console.log(__dirname);
-    console.log('Directorio Principal >>>');
-    console.log(process.cwd()); */
-    uploadPath = path.join(process.cwd() + '/uploads/' + archivo.name);
-
-    archivo.mv(uploadPath, function (err) {
-        if (err) {
-            return res.status(500).json({err});
-        }
-
-        res.json(
-            { msg:`El archivo subio al directorio ${uploadPath}`}
-        );
-    });
-
-/* 
-      console.log(req.files)
-      res.status(200).json({
-          msg:'Carga Archivos'
-      }) */
+    try {
+        const resol = await subirArchivo(req.files,['webp'],'imgs/',['image/webp']);
+        res.status(200).json({
+            resol
+        })
+    } catch (error) {
+        res.status(500).json({
+            msg:error
+        })
+    }
+    
 };
 
 
 module.exports = {
-    cargarArchivo
+    cargarArchivo,
+
 }

@@ -62,7 +62,7 @@ const existeProductoID=async (id)=>{
  * Valida la
  */
 const colecionesPermitidas=(coleccion='', colecciones=[])=>{
-       
+    
     const incluida = colecciones.includes(coleccion);
     if (!incluida){
         throw Error(`La coleccion ${coleccion} no está permitida`);

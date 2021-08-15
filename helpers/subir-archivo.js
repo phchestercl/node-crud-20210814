@@ -45,8 +45,8 @@ const subirArchivo = (files, extensionesValidas = ['png', 'jpg', 'jpeg', 'gif', 
                 if (err) {
                     return reject(err);
                 };
-                console.log(result);
-                console.log('tipo mime >>> : ' + result.split(';')[0]);
+                /* console.log(result);
+                console.log('tipo mime >>> : ' + result.split(';')[0]); */
                 //Si el archivo no es unn archivo de imagen se borra del directorio
                 if(!mimeTypeValidos.includes(result.split(';')[0])){
                     //Borra el archivo
@@ -56,10 +56,7 @@ const subirArchivo = (files, extensionesValidas = ['png', 'jpg', 'jpeg', 'gif', 
                     // Devuelve mensaje de error
                     return reject(`El servidor detectó que archivo ${archivo.name} no corresponde a un archivo de imagenes, por lo que fue borrado`);
                 }
-                resolve({
-                    msg:`El archivo ${archivo.name} se almaceno correctamente con el nombre ${nombreArchivo}`,
-                    path:uploadPath
-                });
+                resolve(nombreArchivo);
             });
         });
 

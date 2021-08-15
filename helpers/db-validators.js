@@ -58,6 +58,17 @@ const existeProductoID=async (id)=>{
         throw new Error('No existen productos con el id proporcionado');
     }
 }
+/**
+ * Valida la
+ */
+const colecionesPermitidas=(coleccion='', colecciones=[])=>{
+       
+    const incluida = colecciones.includes(coleccion);
+    if (!incluida){
+        throw Error(`La coleccion ${coleccion} no está permitida`);
+    }
+    return true;
+}
 module.exports={
     esRolValido,
     existeMail,
@@ -65,7 +76,8 @@ module.exports={
     existeCategoriaID,
     existeNombreProducto,
     noExisteNombreProducto,
-    existeProductoID
+    existeProductoID,
+    colecionesPermitidas
 
 }
 

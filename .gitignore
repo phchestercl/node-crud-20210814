@@ -4,3 +4,11 @@ uploads/*.jpg
 uploads/*.png
 uploads/*.jpeg
 uploads/*.webp
+uploads/productos/*.jpg
+uploads/productos/*.png
+uploads/productos/*.jpeg
+uploads/productos/*.webp
+uploads/usuarios/*.jpg
+uploads/usuarios/*.png
+uploads/usuarios/*.jpeg
+uploads/usuarios/*.webp

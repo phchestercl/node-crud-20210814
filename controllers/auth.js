@@ -1,8 +1,10 @@
 const bcryptjs = require('bcryptjs');
 const { response } = require('express');
+const Mail = require('nodemailer/lib/mailer');
 const { generarJWT } = require('../helpers/generarjwt');
 const { googleVerify } = require('../helpers/google-verify');
 const Usuario = require('../models/usuario');
+const { sendCorreo }=require('../helpers/sendmail')
 
 const login = async (req, res=response)=>{
     
@@ -31,6 +33,8 @@ const login = async (req, res=response)=>{
 
         // generar JWT
         const token = await generarJWT(usuario.id);
+        // enviar mail TEST
+        sendCorreo()
 
         res.status(200).json({ 
             msg:'log ok',
